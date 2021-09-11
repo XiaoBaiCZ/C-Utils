@@ -4,8 +4,13 @@ bin/test: *.c
 
 .PHONY: clean
 clean:
-	rm -rf ./bin
+	rm -rf ./bin ./lib
 
 .PHONY: run
 run:
 	./bin/test
+
+.PHONY: build
+build: *.c
+	mkdir -p ./lib
+	cc $^ -shared -fPIC -lpthread -o ./lib/libblockqueue.so
